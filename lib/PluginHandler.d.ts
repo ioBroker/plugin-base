@@ -11,7 +11,7 @@ declare class PluginHandler {
      */
     constructor(settings: import("@iobroker/plugin-base/types").PluginHandlerSettings);
     settings: import("@iobroker/plugin-base/types").PluginHandlerSettings;
-    log: import("./NamespaceLogger");
+    log: NamespaceLogger;
     /** @type {Record<string, {config: Record<string, any>, instance?: import("./PluginBase") | null}>} */
     plugins: Record<string, {
         config: Record<string, any>;
@@ -25,13 +25,13 @@ declare class PluginHandler {
      */
     addPlugins(configs: Record<string, any>, resolveDirs: string | string[]): void;
     /**
-     * Resole, Require and Instanciate Plugins
+     * Resole, Require and instantiate Plugins
      *
      * @param {string} name name of the plugin
      * @param {Record<string, any>} config plugin configuration
-     * @param {string | string[]} resolveDirs Resolve directories
+     * @param {string | string[]} resolveDirsOrDir Resolve directories
      */
-    instanciatePlugin(name: string, config: Record<string, any>, resolveDirs: string | string[]): void;
+    instantiatePlugin(name: string, config: Record<string, any>, resolveDirsOrDir: string | string[]): void;
     /**
      * Set Objects and States databases for all isActive plugins
      *
@@ -52,16 +52,14 @@ declare class PluginHandler {
      *
      * @param {string} name name of the plugin
      * @param {Record<string, any>} parentConfig io-package of the parent module that uses the plugins (adapter/controller)
-     * @param {(error?: string) => void} [callback] callback function which is called after initialization is done for all plugins
      */
-    initPlugin(name: string, parentConfig: Record<string, any>, callback?: (error?: string) => void): void;
+    initPlugin(name: string, parentConfig: Record<string, any>): Promise<void>;
     /**
      * Initialize all Plugins that are registered
      *
      * @param {Record<string, any>} parentConfig io-package of the parent module that uses the plugins (adapter/controller)
-     * @param {(error?: string) => void} callback callback function which is called after initialization is done for all plugins
      */
-    initPlugins(parentConfig: Record<string, any>, callback: (error?: string) => void): void;
+    initPlugins(parentConfig: Record<string, any>): Promise<void>;
     /**
      * Destroy one plugin instance
      *
@@ -79,14 +77,14 @@ declare class PluginHandler {
      * @param {string} name name of the plugin to return
      * @returns {import("./PluginBase") | null} plugin instance or null if not existent or not isActive
      */
-    getPluginInstance(name: string): import("./PluginBase");
+    getPluginInstance(name: string): import("./PluginBase") | null;
     /**
      * Return plugin configuration
      *
      * @param {string} name name of the plugin to return
      * @returns {Record<string, any> | null} plugin configuration or null if not existent or not isActive
      */
-    getPluginConfig(name: string): Record<string, any>;
+    getPluginConfig(name: string): Record<string, any> | null;
     /**
      * Return if plugin exists
      *
@@ -100,7 +98,7 @@ declare class PluginHandler {
      * @param {string} name name of the plugin to check
      * @returns {boolean} true/false if plugin is successfully isActive
      */
-    isPluginInstanciated(name: string): boolean;
+    isPluginInstantiated(name: string): boolean;
     /**
      * Return if plugin is active
      *
@@ -109,3 +107,4 @@ declare class PluginHandler {
      */
     isPluginActive(name: string): boolean;
 }
+import NamespaceLogger = require("./NamespaceLogger");

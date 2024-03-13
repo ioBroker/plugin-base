@@ -35,9 +35,4 @@ declare module "@iobroker/plugin-base/types" {
 		/** The version of the installed JS-Controller */
 		controllerVersion: string;
 	}
-
-	export type InitCallback = (
-		err: Error | null | undefined,
-		initSuccessful?: boolean
-	) => void;
 }
