@@ -1,4 +1,3 @@
-/// <reference path="types.d.ts" />
 export = PluginHandler;
 /**
  * Base handler for ioBroker Plugins
