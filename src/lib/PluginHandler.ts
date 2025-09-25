@@ -41,7 +41,7 @@ export default class PluginHandler {
     }
 
     /**
-     * Resole, Require and instantiate Plugins
+     * Resolve, Require and instantiate Plugins
      *
      * @param name name of the plugin
      * @param config plugin configuration
