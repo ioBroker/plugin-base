@@ -26,7 +26,7 @@ export default class PluginHandler {
      * Add plugins to the handler, resolve and require the plugin code and create instance
      *
      * @param configs object with keys for plugin names and their configuration
-     * @param resolveDirs Resolve directories for plugins. Controller directory in 'controller'Ä' context or adapter directory and controller directory in 'adapter' context
+     * @param resolveDirs Resolve directories for plugins. Controller directory in 'controller' context or adapter directory and controller directory in 'adapter' context
      */
     addPlugins(
         configs: { [pluginName: string]: Record<string, any> } = {},
