@@ -64,6 +64,10 @@ export default class PluginHandler {
             this.#log.info(`Plugin ${name} could not be resolved`);
             return;
         }
+        if (!pluginPath) {
+            this.#log.info(`Plugin ${name} could not be resolved`);
+            return;
+        }
 
         let ResolvedPlugin: typeof PluginBase;
         try {

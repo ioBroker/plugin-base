@@ -53,7 +53,7 @@ export default class PluginBase {
     }
 
     /**
-     * Method which is called on a clean end of the process to potentially clean up used resources
+     * Method which is called on a clean end of the process to potentially clean up the used resources
      *
      * @returns The return value indicates if the exit was successful. If no action needs to be taken, you should return true.
      */
@@ -238,7 +238,8 @@ export default class PluginBase {
             try {
                 await this.init(pluginConfig);
                 await this.setActive(true);
-            } catch {
+            } catch (err) {
+                this.log.error(`Failed to initialize plugin: ${err instanceof Error ? err.message : String(err)}`);
                 await this.setActive(false);
             }
         } else {
