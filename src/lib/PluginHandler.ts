@@ -105,7 +105,7 @@ export default class PluginHandler {
      * @param objectsDb objects DB instance
      * @param statesDb states DB instance
      */
-    setDatabaseForPlugin(name: string, objectsDb: any, statesDb: any): void {
+    setDatabaseForPlugin(name: string, objectsDb: ObjectsInRedisClient, statesDb: StatesInRedisClient): void {
         const plugin = this.#plugins[name];
         if (plugin?.instance) {
             plugin.instance.setDatabase(objectsDb, statesDb);

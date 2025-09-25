@@ -156,7 +156,7 @@ export default class PluginBase {
      * @param objectsDb objects DB instance
      * @param statesDb states DB instance
      */
-    setDatabase(objectsDb: any, statesDb: any): void {
+    setDatabase(objectsDb: ObjectsInRedisClient, statesDb: StatesInRedisClient): void {
         this.objectsDb = objectsDb;
         this.statesDb = statesDb;
     }
@@ -173,7 +173,7 @@ export default class PluginBase {
         }
         this.parentIoPackage = parentConfig;
 
-        let pluginEnabledState: any;
+        let pluginEnabledState: ioBroker.State | null | undefined | void;
         try {
             await this.extendObject(this.pluginNamespace, {
                 type: 'folder',
