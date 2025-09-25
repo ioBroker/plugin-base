@@ -2,18 +2,18 @@
  * Logger with Namespace-prefix for ioBroker
  */
 export default class NamespaceLogger {
-    private readonly namespaceLog: string;
-    private logger: ioBroker.Logger;
+    readonly #namespaceLog: string;
+    #logger: ioBroker.Logger;
 
     /**
      * @param namespaceLog Logging-Namespace as prefix
      * @param logger Logger-instance
      */
     constructor(namespaceLog: string, logger: ioBroker.Logger) {
-        this.namespaceLog = namespaceLog;
+        this.#namespaceLog = namespaceLog;
         // We need to bind this context, otherwise this can be undefined
         // when logger methods are passed around.
-        this.logger = logger;
+        this.#logger = logger;
         this.silly = this.silly.bind(this);
         this.debug = this.debug.bind(this);
         this.info = this.info.bind(this);
@@ -22,22 +22,22 @@ export default class NamespaceLogger {
     }
 
     silly(msg: string): void {
-        this.logger.silly(`${this.namespaceLog} ${msg}`);
+        this.#logger.silly(`${this.#namespaceLog} ${msg}`);
     }
 
     debug(msg: string): void {
-        this.logger.debug(`${this.namespaceLog} ${msg}`);
+        this.#logger.debug(`${this.#namespaceLog} ${msg}`);
     }
 
     info(msg: string): void {
-        this.logger.info(`${this.namespaceLog} ${msg}`);
+        this.#logger.info(`${this.#namespaceLog} ${msg}`);
     }
 
     error(msg: string): void {
-        this.logger.error(`${this.namespaceLog} ${msg}`);
+        this.#logger.error(`${this.#namespaceLog} ${msg}`);
     }
 
     warn(msg: string): void {
-        this.logger.warn(`${this.namespaceLog} ${msg}`);
+        this.#logger.warn(`${this.#namespaceLog} ${msg}`);
     }
 }
