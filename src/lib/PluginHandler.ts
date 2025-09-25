@@ -82,6 +82,8 @@ export default class PluginHandler {
             iobrokerConfig: this.#settings.iobrokerConfig,
             parentPackage: this.#settings.parentPackage, // package.json from "parent" which uses the plugin (adapter/controller)
             controllerVersion: this.#settings.controllerVersion,
+            adapterDir: resolveDirs.length > 1 ? resolveDirs[0] : undefined,
+            jsControllerDir: resolveDirs.length > 1 ? resolveDirs[1] : resolveDirs[0],
         };
 
         this.#plugins[name] = {

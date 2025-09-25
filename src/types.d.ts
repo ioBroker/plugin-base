@@ -61,4 +61,8 @@ export interface PluginSettings {
     parentPackage: Record<string, any>;
     /** The version of the installed JS-Controller */
     controllerVersion: string;
+    /** The directory of the adapter, only available if scope is "adapter" */
+    adapterDir?: string;
+    /** The directory of the js-controller */
+    jsControllerDir: string;
 }
