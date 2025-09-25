@@ -53,7 +53,7 @@ export default class PluginBase {
     }
 
     /**
-     * Method which is called on a clean end of the process to pot. clean up used resources
+     * Method which is called on a clean end of the process to potentially clean up used resources
      *
      * @returns The return value indicates if the exit was successful. If no action needs to be taken, you should return true.
      */
