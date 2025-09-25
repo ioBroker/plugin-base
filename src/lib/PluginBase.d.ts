@@ -37,7 +37,7 @@ declare class PluginBase {
      *
      * @return {boolean} The return value indicates if the exit was successful. If no action needs to be taken, you should return true.
      */
-    destroy(): boolean;
+    destroy(): Promise<boolean>;
     /**
      * Get a State from State DB
      *
