@@ -63,7 +63,7 @@ module.exports = MySuperPlugin;
 The object offers the following "public" variables and methods to be used in your implementation:
 * **this.log** as ioBroker style Log class with methods for silly, debug, info, warn and error and will log automatically with a prepended String identifying the adapter and plugin
 * **this.pluginScope** contains the scope the plugin runs in. this.SCOPES.ADAPTER and this.SCOPES.CONTROLLER can be used if a plugin provides different functionality.
-* **this.pluginNamespace** is the State/Object namespace of the plugin instance, e.g. `system.adapter.<ADAPTER_NAME>.<INSTANCE>.plugins.MySuperPlugin` or `system.host.name.plugins.MySuperPlugin`. Please try to stay inside this namescape if nwe objects are created 
+* **this.pluginNamespace** is the State/Object namespace of the plugin instance, e.g. `system.adapter.<ADAPTER_NAME>.<INSTANCE>.plugins.MySuperPlugin` or `system.host.name.plugins.MySuperPlugin`. Please try to stay inside this namespace if new objects are created 
 * **this.iobrokerConfig** contains the full ioBroker config object (basically `iobroker-data/iobroker.json`) 
 * **this.parentPackage** contains the `package.json` of the adapter/controller the plugin runs in
 * **this.parentIoPackage** contains the `io-package.json` when running in js-controller or the instance configuration when running in an adapter
