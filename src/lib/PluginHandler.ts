@@ -61,11 +61,11 @@ export default class PluginHandler {
                 paths: resolveDirs,
             });
         } catch {
-            this.#log.info(`Plugin ${name} could not be resolved`);
+            this.#log.error(`Plugin ${name} could not be resolved`);
             return;
         }
         if (!pluginPath) {
-            this.#log.info(`Plugin ${name} could not be resolved`);
+            this.#log.error(`Plugin ${name} could not be resolved`);
             return;
         }
 
@@ -73,7 +73,7 @@ export default class PluginHandler {
         try {
             ResolvedPlugin = require(pluginPath);
         } catch (e: unknown) {
-            this.#log.info(`Plugin ${name} could not be required: ${(e as Error).message}`);
+            this.#log.error(`Plugin ${name} could not be required: ${(e as Error).message}`);
             return;
         }
 
@@ -97,7 +97,7 @@ export default class PluginHandler {
         try {
             this.#plugins[name].instance = new ResolvedPlugin(pluginSettings);
         } catch (e: unknown) {
-            this.#log.info(`Plugin ${name} could not be initialized: ${(e as Error).message}`);
+            this.#log.error(`Plugin ${name} could not be initialized: ${(e as Error).message}`);
             this.#plugins[name].instance = null;
         }
     }
@@ -152,7 +152,7 @@ export default class PluginHandler {
             } catch (err) {
                 this.#log.warn(`Cannot destroy plugin ${name}: ${err instanceof Error ? err.message : String(err)}`);
                 if (err instanceof Error && err.stack) {
-                    this.#log.debug(err.stack);
+                    this.#log.warn(err.stack);
                 }
             }
             delete this.#plugins[name].instance;
@@ -188,7 +188,7 @@ export default class PluginHandler {
             } catch (err: unknown) {
                 this.#log.warn(`Plugin ${name} could not be destroyed: ${(err as Error).message}`);
                 if (err instanceof Error && err.stack) {
-                    this.#log.debug(err.stack);
+                    this.#log.warn(err.stack);
                 }
             }
             if (destroyed || force) {
@@ -199,7 +199,7 @@ export default class PluginHandler {
                 delete this.#plugins[name].instance;
                 return true;
             }
-            this.#log.info(`Plugin ${name} could not be destroyed`);
+            this.#log.warn(`Plugin ${name} could not be destroyed`);
             return false;
         }
         return true;
