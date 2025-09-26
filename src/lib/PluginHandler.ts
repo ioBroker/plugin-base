@@ -127,7 +127,7 @@ export default class PluginHandler {
     }
 
     /**
-     * Initialize one Plugins
+     * Initialize one Plugin
      *
      * @param name name of the plugin
      * @param parentConfig io-package of the parent module that uses the plugins (adapter/controller)
@@ -140,10 +140,21 @@ export default class PluginHandler {
 
         try {
             await instance.initPlugin(this.#plugins[name].config, parentConfig);
-        } catch {
-            this.#log.debug(`Plugin ${name} destroyed because not initialized correctly`);
-
-            await instance.destroy();
+        } catch (err) {
+            this.#log.warn(
+                `Plugin ${name} destroyed because not initialized correctly: ${err instanceof Error ? err.message : String(err)}`,
+            );
+            if (err instanceof Error && err.stack) {
+                this.#log.debug(err.stack);
+            }
+            try {
+                await instance.destroy();
+            } catch (err) {
+                this.#log.warn(`Cannot destroy plugin ${name}: ${err instanceof Error ? err.message : String(err)}`);
+                if (err instanceof Error && err.stack) {
+                    this.#log.debug(err.stack);
+                }
+            }
             delete this.#plugins[name].instance;
         }
     }
@@ -171,7 +182,15 @@ export default class PluginHandler {
     async destroy(name: string, force?: boolean): Promise<boolean> {
         const instance = this.#plugins[name]?.instance;
         if (instance) {
-            const destroyed = await instance.destroy();
+            let destroyed = false;
+            try {
+                destroyed = await instance.destroy();
+            } catch (err: unknown) {
+                this.#log.warn(`Plugin ${name} could not be destroyed: ${(err as Error).message}`);
+                if (err instanceof Error && err.stack) {
+                    this.#log.debug(err.stack);
+                }
+            }
             if (destroyed || force) {
                 this.#log.debug(`Plugin ${name} destroyed`);
                 if (!force) {
@@ -190,7 +209,11 @@ export default class PluginHandler {
     async destroyAll(): Promise<void> {
         const names = Object.keys(this.#plugins);
         for (const pluginName of names) {
-            await this.destroy(pluginName, true);
+            try {
+                await this.destroy(pluginName, true);
+            } catch (err) {
+                this.#log.warn(`Plugin "${pluginName}" could not be destroyed: ${(err as Error).message}`);
+            }
         }
     }
 

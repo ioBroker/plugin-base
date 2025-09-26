@@ -95,7 +95,7 @@ export default class PluginBase {
      * @param id id of the object to retrieve
      * @returns Promise with result or error
      */
-    getObject(id: string): Promise<ioBroker.Object | null | undefined> {
+    getObject<T extends string>(id: T): Promise<ioBroker.ObjectIdToObjectType<T> | null | undefined> {
         if (!this.objectsDb) {
             return Promise.reject(new Error('Objects Database not initialized.'));
         }
