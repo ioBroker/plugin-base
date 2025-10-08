@@ -72,6 +72,11 @@ export default class PluginHandler {
         let ResolvedPlugin: typeof PluginBase;
         try {
             ResolvedPlugin = require(pluginPath);
+            // @ts-expect-error Some plugins export like this
+            if (ResolvedPlugin.default) {
+                // @ts-expect-error Some plugins export like this
+                ResolvedPlugin = ResolvedPlugin.default;
+            }
         } catch (e: unknown) {
             this.#log.error(`Plugin ${name} could not be required: ${(e as Error).message}`);
             return;
