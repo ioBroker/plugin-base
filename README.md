@@ -146,7 +146,7 @@ A full example is the Sentry plugin: https://github.com/ioBroker/plugin-sentry o
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 3.0.0 (2025-09-26)
+### **WORK IN PROGRESS**
 
 - (@GermanBluefox) The code was rewritten to TypeScript
 
