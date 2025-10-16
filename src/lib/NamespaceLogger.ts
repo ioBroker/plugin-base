@@ -2,17 +2,14 @@
  * Logger with Namespace-prefix for ioBroker
  */
 export default class NamespaceLogger {
-    readonly #namespaceLog: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`;
+    readonly #namespaceLog: string;
     #logger: ioBroker.Logger;
 
     /**
      * @param namespaceLog Logging-Namespace as prefix
      * @param logger Logger-instance
      */
-    constructor(
-        namespaceLog: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`,
-        logger: ioBroker.Logger,
-    ) {
+    constructor(namespaceLog: string, logger: ioBroker.Logger) {
         this.#namespaceLog = namespaceLog;
         // We need to bind this context, otherwise this can be undefined
         // when logger methods are passed around.

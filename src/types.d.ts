@@ -33,7 +33,7 @@ export interface PluginHandlerSettings {
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
     namespace: `system.adapter.${string}.${number}` | `system.host.${string}`;
     /** The namespace which will be used for logging */
-    logNamespace: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`;
+    logNamespace: string;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
     /** The complete ioBroker configuration object */
@@ -52,7 +52,7 @@ export interface PluginSettings {
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
     pluginNamespace: `system.adapter.${string}.${number}.plugins.${string}` | `system.host.${string}.plugins.${string}`;
     /** The namespace which will be used for logging */
-    pluginLogNamespace: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`;
+    pluginLogNamespace: string;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
     /** The complete ioBroker configuration object */
