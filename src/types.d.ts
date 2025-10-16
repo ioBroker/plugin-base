@@ -31,9 +31,9 @@ export interface PluginHandlerSettings {
     /** The scope in which the plugin will be executed */
     scope: 'adapter' | 'controller';
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
-    namespace: `system.adapter.${string}.${number}`;
+    namespace: `system.adapter.${string}.${number}` | `system.host.${string}`;
     /** The namespace which will be used for logging */
-    logNamespace: string;
+    logNamespace: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
     /** The complete ioBroker configuration object */
@@ -48,11 +48,11 @@ export interface PluginSettings {
     /** The scope in which the plugin will be executed */
     pluginScope: 'adapter' | 'controller';
     /** The object namespace for the parent of the plugin, e.g. `system.adapter.<adaptername>.0`, or `system.host.<hostname>.` */
-    parentNamespace: `system.adapter.${string}.${number}`;
+    parentNamespace: `system.adapter.${string}.${number}` | `system.host.${string}`;
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
-    pluginNamespace: `system.adapter.${string}.${number}.plugins.${string}`;
+    pluginNamespace: `system.adapter.${string}.${number}.plugins.${string}` | `system.host.${string}.plugins.${string}`;
     /** The namespace which will be used for logging */
-    pluginLogNamespace: string;
+    pluginLogNamespace: `${`system.adapter.${string}.${number}` | `system.host.${string}`} Plugin ${string}`;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
     /** The complete ioBroker configuration object */
