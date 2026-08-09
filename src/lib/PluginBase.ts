@@ -29,7 +29,7 @@ export default class PluginBase {
 
     /**
      * Constructor for Plugin class
-     * This method is called by js-controller/adapter process internally when initializing the plugin.
+     * This method is called by the js-controller / adapter process internally when initializing the plugin.
      */
     constructor(settings: PluginSettings) {
         this.pluginScope = settings.pluginScope;
@@ -42,7 +42,7 @@ export default class PluginBase {
     }
 
     /**
-     * Method for Plugin developer to initialize his Plugin
+     * Method for a Plugin developer to initialize his Plugin
      *
      * @param _pluginConfig plugin configuration from config files
      * @returns resolves if init was successful else rejects
@@ -53,7 +53,7 @@ export default class PluginBase {
     }
 
     /**
-     * Method which is called on a clean end of the process to potentially clean up the used resources
+     * Method that is called on a clean end of the process to potentially clean up the used resources
      *
      * @returns The return value indicates if the exit was successful. If no action needs to be taken, you should return true.
      */

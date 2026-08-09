@@ -12,6 +12,8 @@ export default [
             'test/**/*.js',
             '*.config.mjs',
             'build/**/*',
+            // plugin fixtures are loaded through require() on purpose and are not part of a tsconfig
+            'test/integration/fixtures/**',
             'admin/build',
             'admin/words.js',
             'admin/admin.d.ts',
@@ -20,6 +22,26 @@ export default [
             // these files need to be adapted in the future
             'admin/blockly.js',
         ],
+    },
+
+    {
+        // tasks.ts is a build script and therefore not part of tsconfig.json
+        languageOptions: {
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+                projectService: {
+                    allowDefaultProject: ['tasks.ts'],
+                },
+            },
+        },
+    },
+
+    {
+        // `describe()` and `it()` of node:test return promises that are handled by the test runner
+        files: ['test/**/*.ts'],
+        rules: {
+            '@typescript-eslint/no-floating-promises': 'off',
+        },
     },
 
     {

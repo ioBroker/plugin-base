@@ -2,8 +2,7 @@
     // Used to type-check in the editor
     "compilerOptions": {
         "target": "es2017" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
-        "allowJs": true /* Allow JavaScript files to be compiled. */,
-        "checkJs": true /* Report errors in .js files. */,
+        "allowJs": false /* Allow JavaScript files to be compiled. */,
         "declaration": true /* Generates corresponding '.d.ts' file. */,
         "emitDeclarationOnly": false,
         "stripInternal": true,

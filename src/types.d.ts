@@ -3,14 +3,14 @@ export interface IoPackageFile {
     protectedNative?: string[];
     encryptedNative?: string[];
     notifications?: ioBroker.Notification[];
-    instanceObjects: (
+    instanceObjects?: (
         | ioBroker.StateObject
         | ioBroker.DeviceObject
         | ioBroker.ChannelObject
         | ioBroker.FolderObject
         | ioBroker.MetaObject
     )[];
-    objects: ioBroker.AnyObject[];
+    objects?: ioBroker.AnyObject[];
 }
 
 /**
@@ -32,7 +32,7 @@ export interface PluginHandlerSettings {
     scope: 'adapter' | 'controller';
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
     namespace: `system.adapter.${string}.${number}` | `system.host.${string}`;
-    /** The namespace which will be used for logging */
+    /** The namespace that will be used for logging */
     logNamespace: string;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
@@ -51,7 +51,7 @@ export interface PluginSettings {
     parentNamespace: `system.adapter.${string}.${number}` | `system.host.${string}`;
     /** The object namespace for the plugin, e.g. `system.adapter.<adaptername>.0.plugins.name`, or `system.host.<hostname>.plugins.name` */
     pluginNamespace: `system.adapter.${string}.${number}.plugins.${string}` | `system.host.${string}.plugins.${string}`;
-    /** The namespace which will be used for logging */
+    /** The namespace that will be used for logging */
     pluginLogNamespace: string;
     /** The logger object to use for logging */
     log: ioBroker.Logger;
