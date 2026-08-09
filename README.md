@@ -146,7 +146,7 @@ A full example is the Sentry plugin: https://github.com/ioBroker/plugin-sentry o
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 4.0.0 (2026-08-09)
 - (@GermanBluefox) A minimal supported Node.js version is now 20.0.0
 - (@GermanBluefox) Updated packages
 - (@GermanBluefox) Changed type of `IoPackageFile`

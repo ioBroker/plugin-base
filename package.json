@@ -1,71 +1,71 @@
 {
-    "name": "@iobroker/plugin-base",
-    "version": "3.0.3",
-    "description": "Base module for plugins for js-controller and adapters",
-    "author": {
-        "name": "Ingo Fischer",
-        "email": "iobroker@fischer-ka.de"
+  "name": "@iobroker/plugin-base",
+  "version": "4.0.0",
+  "description": "Base module for plugins for js-controller and adapters",
+  "author": {
+    "name": "Ingo Fischer",
+    "email": "iobroker@fischer-ka.de"
+  },
+  "contributors": [
+    "Al Calzone <d.griesel@gmx.net>",
+    "Denis Haev <dogafox@gmail.com>"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.js",
+      "types": "./build/esm/index.d.ts"
     },
-    "contributors": [
-        "Al Calzone <d.griesel@gmx.net>",
-        "Denis Haev <dogafox@gmail.com>"
-    ],
-    "engines": {
-        "node": ">=20.0.0"
-    },
-    "main": "build/cjs/index.js",
-    "module": "build/esm/index.js",
-    "types": "build/esm/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./build/esm/index.js",
-            "require": "./build/cjs/index.js",
-            "types": "./build/esm/index.d.ts"
-        },
-        "./package.json": "./package.json"
-    },
-    "files": [
-        "build/",
-        "LICENSE"
-    ],
-    "scripts": {
-        "postbuild": "esm2cjs --in build/esm --out build/cjs -l error -t node20 && tsx tasks.ts",
-        "build": "tsc -p tsconfig.build.json && npm run postbuild",
-        "prelint": "npm run build",
-        "lint": "eslint -c eslint.config.mjs",
-        "precheck": "npm run build",
-        "check": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",
-        "pretest:integration": "npm run build",
-        "test:integration": "tsx --test test/integration/packageExports.test.ts test/integration/pluginHandler.test.ts test/integration/pluginBase.test.ts",
-        "test": "npm run test:integration",
-        "prepublishOnly": "npm run build",
-        "release": "release-script"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ioBroker/plugin-base.git"
-    },
-    "keywords": [
-        "iobroker",
-        "adapter",
-        "plugins"
-    ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/ioBroker/plugin-base/issues"
-    },
-    "homepage": "https://github.com/ioBroker/plugin-base#readme",
-    "devDependencies": {
-        "@alcalzone/esm2cjs": "^1.4.2",
-        "@alcalzone/pak": "^0.12.0",
-        "@alcalzone/release-script": "^5.2.1",
-        "@alcalzone/release-script-plugin-license": "^5.2.2",
-        "@iobroker/db-objects-redis": "^7.2.2",
-        "@iobroker/db-states-redis": "^7.2.2",
-        "@iobroker/eslint-config": "^2.3.4",
-        "@iobroker/types": "^7.2.2",
-        "@types/node": "^22.20.1",
-        "tsx": "^4.23.11",
-        "typescript": "~6.0.3"
-    }
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "build/",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postbuild": "esm2cjs --in build/esm --out build/cjs -l error -t node20 && tsx tasks.ts",
+    "build": "tsc -p tsconfig.build.json && npm run postbuild",
+    "prelint": "npm run build",
+    "lint": "eslint -c eslint.config.mjs",
+    "precheck": "npm run build",
+    "check": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",
+    "pretest:integration": "npm run build",
+    "test:integration": "tsx --test test/integration/packageExports.test.ts test/integration/pluginHandler.test.ts test/integration/pluginBase.test.ts",
+    "test": "npm run test:integration",
+    "prepublishOnly": "npm run build",
+    "release": "release-script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioBroker/plugin-base.git"
+  },
+  "keywords": [
+    "iobroker",
+    "adapter",
+    "plugins"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ioBroker/plugin-base/issues"
+  },
+  "homepage": "https://github.com/ioBroker/plugin-base#readme",
+  "devDependencies": {
+    "@alcalzone/esm2cjs": "^1.4.2",
+    "@alcalzone/pak": "^0.12.0",
+    "@alcalzone/release-script": "^5.2.1",
+    "@alcalzone/release-script-plugin-license": "^5.2.2",
+    "@iobroker/db-objects-redis": "^7.2.2",
+    "@iobroker/db-states-redis": "^7.2.2",
+    "@iobroker/eslint-config": "^2.3.4",
+    "@iobroker/types": "^7.2.2",
+    "@types/node": "^22.20.1",
+    "tsx": "^4.23.11",
+    "typescript": "~6.0.3"
+  }
 }
