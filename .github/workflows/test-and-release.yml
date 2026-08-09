@@ -28,6 +28,7 @@ jobs:
               with:
                   node-version: '24.x'
                   test-command: 'false' # Skip tests in this step
+                  install-command: 'npm ci && npm run build'
                   lint: true
 
     # Runs adapter tests on all supported node versions and OSes
