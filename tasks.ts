@@ -1,10 +1,6 @@
-// This package has no "type" field, so this file is executed as CommonJS.
-// It must stay require-based, otherwise node has to reparse it as an ES module.
-import type * as fs from 'node:fs';
-import type * as path from 'node:path';
-
-const { copyFileSync } = require('node:fs') as typeof fs;
-const { join } = require('node:path') as typeof path;
+// Executed via tsx, because node cannot run TypeScript on all supported node versions (>= 20).
+import { copyFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 /** Build outputs the static files have to be copied into */
 const targets: readonly string[] = ['esm', 'cjs'];
