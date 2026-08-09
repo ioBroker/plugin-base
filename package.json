@@ -1,60 +1,64 @@
 {
-  "name": "@iobroker/plugin-base",
-  "version": "3.0.3",
-  "description": "Base module for plugins for js-controller and adapters",
-  "author": {
-    "name": "Ingo Fischer",
-    "email": "iobroker@fischer-ka.de"
-  },
-  "contributors": [
-    "Al Calzone <d.griesel@gmx.net>",
-    "Denis Haev <dogafox@gmail.com>"
-  ],
-  "main": "build/cjs/index.js",
-  "module": "build/esm/index.js",
-  "types": "build/esm/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./build/esm/index.js",
-      "require": "./build/cjs/index.js",
-      "types": "./build/esm/index.d.ts"
+    "name": "@iobroker/plugin-base",
+    "version": "3.0.3",
+    "description": "Base module for plugins for js-controller and adapters",
+    "author": {
+        "name": "Ingo Fischer",
+        "email": "iobroker@fischer-ka.de"
     },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "build/",
-    "LICENSE"
-  ],
-  "scripts": {
-    "postbuild": "esm2cjs --in build/esm --out build/cjs -l error -t node18 && node tasks",
-    "build": "tsc -p tsconfig.build.json && npm run postbuild",
-    "prepublishOnly": "npm run build",
-    "release": "release-script"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ioBroker/plugin-base.git"
-  },
-  "keywords": [
-    "iobroker",
-    "adapter",
-    "plugins"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ioBroker/plugin-base/issues"
-  },
-  "homepage": "https://github.com/ioBroker/plugin-base#readme",
-  "devDependencies": {
-    "@alcalzone/pak": "^0.11.0",
-    "@alcalzone/esm2cjs": "^1.4.2",
-    "@alcalzone/release-script": "^5.0.0",
-    "@alcalzone/release-script-plugin-license": "^4.0.0",
-    "@iobroker/db-objects-redis": "^7.0.7",
-    "@iobroker/db-states-redis": "^7.0.7",
-    "@iobroker/eslint-config": "^2.2.0",
-    "@iobroker/types": "^7.0.7",
-    "@types/node": "^25.0.9",
-    "typescript": "~5.9.3"
-  }
+    "contributors": [
+        "Al Calzone <d.griesel@gmx.net>",
+        "Denis Haev <dogafox@gmail.com>"
+    ],
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "main": "build/cjs/index.js",
+    "module": "build/esm/index.js",
+    "types": "build/esm/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./build/esm/index.js",
+            "require": "./build/cjs/index.js",
+            "types": "./build/esm/index.d.ts"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "build/",
+        "LICENSE"
+    ],
+    "scripts": {
+        "postbuild": "esm2cjs --in build/esm --out build/cjs -l error -t node20 && node --experimental-strip-types tasks.ts",
+        "build": "tsc -p tsconfig.build.json && npm run postbuild",
+        "lint": "eslint -c eslint.config.mjs",
+        "prepublishOnly": "npm run build",
+        "release": "release-script"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ioBroker/plugin-base.git"
+    },
+    "keywords": [
+        "iobroker",
+        "adapter",
+        "plugins"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ioBroker/plugin-base/issues"
+    },
+    "homepage": "https://github.com/ioBroker/plugin-base#readme",
+    "devDependencies": {
+        "@alcalzone/pak": "^0.12.0",
+        "@alcalzone/esm2cjs": "^1.4.2",
+        "@alcalzone/release-script": "^5.2.1",
+        "@alcalzone/release-script-plugin-license": "^5.2.2",
+        "@iobroker/db-objects-redis": "^7.2.2",
+        "@iobroker/db-states-redis": "^7.2.2",
+        "@iobroker/eslint-config": "^2.3.4",
+        "@iobroker/types": "^7.2.2",
+        "@types/node": "^22.20.1",
+        "typescript": "~6.0.3"
+    }
 }

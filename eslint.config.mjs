@@ -23,6 +23,18 @@ export default [
     },
 
     {
+        // tasks.ts is a build script and therefore not part of tsconfig.json
+        languageOptions: {
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+                projectService: {
+                    allowDefaultProject: ['tasks.ts'],
+                },
+            },
+        },
+    },
+
+    {
         // disable temporary the rule 'jsdoc/require-param' and enable 'jsdoc/require-jsdoc'
         rules: {
             'jsdoc/require-jsdoc': 'off',
